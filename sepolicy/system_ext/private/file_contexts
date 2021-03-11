@@ -1,2 +1,6 @@
+# battery health
+/sys/class/power_supply/bms/charge_full*    u:object_r:sysfs_battery_health:s0
+/sys/class/power_supply/battery/health  u:object_r:sysfs_battery_health:s0
+/sys/class/power_supply/battery/technology  u:object_r:sysfs_battery_health:s0
 # sysinfo
 /sys/class/thermal/thermal_zone14/temp u:object_r:sysfs_device_info:s0
