@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3a1a701_3a2c98eb",
+        "filename": "overlay/frameworks/base/core/res/res/values/config.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 6
+      },
+      "writtenOn": "2021-06-15T20:52:54Z",
+      "side": 1,
+      "message": "We dont support this.",
+      "revId": "255e50f03481868bedac268feb067d7abada0ca6",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
