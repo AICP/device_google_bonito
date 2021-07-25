@@ -8,5 +8,10 @@
   "repository":  "LineageOS/android_packages_apps_ElmyraService",
   "target_path": "packages/apps/ElmyraService",
   "branch":      "lineage-18.1"
+ },
+ {
+  "repository":  "Siluxsept/vendor_google_camera",
+  "target_path": "vendor/google/camera",
+  "branch":      "r11.1"
  }
 ]

@@ -61,8 +61,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.3.vendor
 
 # Camera
-PRODUCT_PACKAGES += \
-    Snap
+$(call inherit-product, vendor/google/camera/config.mk)
 
 # Elmyra
 PRODUCT_PACKAGES += \
