@@ -60,6 +60,10 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.2.vendor \
     vendor.display.config@1.3.vendor
 
+# Gaming Mode
+PRODUCT_PACKAGES += \
+    GamingMode
+
 # Google Camera
 $(call inherit-product, vendor/google/camera/config.mk)
 
