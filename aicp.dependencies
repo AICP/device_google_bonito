@@ -3,5 +3,15 @@
   "repository":  "AICP/kernel_google_msm-4.9",
   "target_path": "kernel/google/msm-4.9",
   "branch":      "r11.1"
+ },
+ {
+  "repository":  "AICP/device_twrp",
+  "target_path": "device/twrp/bonito",
+  "branch":      "bonito"
+ },
+ {
+  "repository":  "AICP/device_twrp",
+  "target_path": "device/twrp/sargo",
+  "branch":      "sargo"
  }
 ]

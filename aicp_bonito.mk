@@ -10,6 +10,9 @@ $(call inherit-product, device/google/bonito/aosp_bonito.mk)
 
 -include device/google/bonito/device-lineage.mk
 
+#TWRP Support
+-include device/twrp/bonito/twrp.mk
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := bonito
 PRODUCT_NAME := aicp_bonito
