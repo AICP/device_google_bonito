@@ -863,6 +863,7 @@ PRODUCT_PACKAGES += \
 
 # fastbootd
 PRODUCT_PACKAGES += \
+    android.hardware.fastboot@1.1-impl-mock \
     fastbootd
 
 # GTS ACSA(Agreement for Carrier Service Application) verification
