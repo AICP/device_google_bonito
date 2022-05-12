@@ -24,6 +24,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PACKAGES += \
     ElmyraService
 
+# Charge control
+PRODUCT_PACKAGES += \
+    vendor.lineage.chgctrl@1.0-service.google
+
 # EUICC
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
