@@ -8,7 +8,7 @@ allow init-firstboot vendor_toolbox_exec:file rx_file_perms;
 
 # Read USB connection state
 allow init-firstboot sysfs_msm_subsys:dir search;
-r_dir_file(init-firstboot, sysfs_batteryinfo)
+r_dir_file(init-firstboot, vendor_sysfs_battery_supply)
 
 # Set property to trigger a shutdown
 set_prop(init-firstboot, powerctl_prop)
