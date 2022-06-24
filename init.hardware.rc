@@ -220,14 +220,6 @@ on late-fs
     # Start time daemon early so that the system time can be set early
     start time_daemon
 
-    # Battery Health
-    chown system system /sys/class/power_supply/bms/charge_full
-    chmod 0644 /sys/class/power_supply/bms/charge_full
-    chown system system /sys/class/power_supply/bms/charge_full_design
-    chmod 0644 /sys/class/power_supply/bms/charge_full_design
-    chown system system /sys/class/power_supply/bms/cycle_count
-    chmod 0644 /sys/class/power_supply/bms/cycle_count
-
     # Write build info to kdebuginfo.
     write /sys/module/kdebuginfo/parameters/build_info "${ro.product.name}-${ro.build.type} ${ro.build.version.incremental}"
 
