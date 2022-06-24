@@ -8,7 +8,7 @@ get_prop(hal_wlc, hwservicemanager_prop)
 init_daemon_domain(hal_wlc)
 
 # Allow access to /sys/class/power_supply/wireless
-r_dir_file(hal_wlc, vendor_sysfs_battery_supply)
+r_dir_file(hal_wlc, sysfs_batteryinfo)
 
 # Allow access to /sys/devices/platform/soc/a88000.i2c/i2c-0/0-0061
 r_dir_file(hal_wlc, sysfs_wlc)
