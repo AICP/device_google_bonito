@@ -28,6 +28,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
 
+# GMS
+WITH_GMS := true
+
 # Google Assistant
 PRODUCT_PRODUCT_PROPERTIES += ro.opa.eligible_device=true
 
@@ -148,3 +151,5 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.4.vendor:64 \
     android.hardware.wifi@1.5.vendor:64 \
     android.system.net.netd@1.1.vendor:64
+
+$(call inherit-product, vendor/google/gapps/arm64/arm64-vendor.mk)
