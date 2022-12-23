@@ -1,10 +1,22 @@
 [
   {
-    "repository": "kernel_google_msm-4.9",
+    "repository":  "AICP/kernel_google_msm-4.9",
     "target_path": "kernel/google/msm-4.9"
   },
   {
-    "repository": "LineageOS/android_packages_apps_ElmyraService",
-    "target_path": "packages/apps/ElmyraService"
+    "repository":  "LineageOS/android_packages_apps_ElmyraService",
+    "target_path": "packages/apps/ElmyraService",
+    "branch":      "lineage-20.0"
+  },
+  {
+    "remote":      "gitlab",
+    "repository":  "Siluxsept/vendor_gapps",
+    "target_path": "vendor/gapps",
+    "branch":      "tau"
+  },
+  {
+    "repository":  "luk1337/ih8sn",
+    "target_path": "vendor/ih8sn",
+    "branch":      "master"
   }
 ]
