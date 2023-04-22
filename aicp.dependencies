@@ -1,9 +1,12 @@
 [
   {
+    "remote":      "aicp",
     "repository":  "AICP/kernel_google_msm-4.9",
     "target_path": "kernel/google/msm-4.9"
+    "branch":      "t13.0"
   },
   {
+    "remote":      "aicp",
     "repository":  "LineageOS/android_packages_apps_ElmyraService",
     "target_path": "packages/apps/ElmyraService",
     "branch":      "lineage-20.0"
@@ -15,8 +18,22 @@
     "branch":      "tau"
   },
   {
-    "repository":  "luk1337/ih8sn",
-    "target_path": "vendor/ih8sn",
-    "branch":      "master"
+    "remote":      "aicp",
+    "repository":  "TheMuppets/proprietary_vendor_google_bonito",
+    "target_path": "vendor/google/bonito",
+    "branch":      "lineage-20"
+  },
+  {
+    "remote":      "aicp",
+    "repository":  "TheMuppets/proprietary_vendor_google_sargo",
+    "target_path": "vendor/google/sargo",
+    "branch":      "lineage-20"
+  },
+  {
+    "remote":      "gitlab",
+    "repository":  "the-muppets/proprietary_vendor_firmware",
+    "target_path": "vendor/firmware",
+    "clone-depth": "1",
+    "branch":      "lineage-20"
   }
 ]
