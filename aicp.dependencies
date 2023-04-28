@@ -2,7 +2,7 @@
   {
     "remote":      "aicp",
     "repository":  "AICP/kernel_google_msm-4.9",
-    "target_path": "kernel/google/msm-4.9"
+    "target_path": "kernel/google/msm-4.9",
     "branch":      "t13.0"
   },
   {
