@@ -18,7 +18,7 @@ TARGET_NEEDS_DTBOIMAGE := true
 
 # Manifests
 DEVICE_MANIFEST_FILE += device/google/bonito/lineage_manifest.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/lineage/config/device_framework_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += vendor/aicp/config/device_framework_matrix.xml
 
 # Partitions
 AB_OTA_PARTITIONS += \
@@ -29,7 +29,7 @@ endif
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Reserve space for gapps install
--include vendor/lineage/config/BoardConfigReservedSize.mk
+-include vendor/aicp/config/BoardConfigReservedSize.mk
 ifneq ($(WITH_GMS),true)
 BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 1069547520
 endif
