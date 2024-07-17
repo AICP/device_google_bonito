@@ -16,5 +16,11 @@
     "repository":  "LineageOS/android_device_google_gs-common",
     "target_path": "device/google/gs-common",
     "branch":      "lineage-21"
+  },
+  {
+    "remote":      "gitlab",
+    "repository":  "MindTheGapps/vendor_gapps",
+    "target_path": "vendor/gapps",
+    "branch":      "upsilon"
   }
 ]
