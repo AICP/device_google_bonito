@@ -28,9 +28,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
 
 # GMS
-ifeq ($(WITH_GMS),true)
-GMS_MAKEFILE=gms_minimal.mk
-endif
+# ifeq ($(WITH_GMS),true)
+# GMS_MAKEFILE=gms_minimal.mk
+# endif
+WITH_GMS := true
+$(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
 
 # Google Assistant
 PRODUCT_PRODUCT_PROPERTIES += ro.opa.eligible_device=true
