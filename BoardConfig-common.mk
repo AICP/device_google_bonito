@@ -191,11 +191,7 @@ TARGET_USES_GRALLOC1 := true
 TARGET_USES_HWC2 := true
 TARGET_USES_NV21_CAMERA_PREVIEW := true
 
-VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
-
 # Display
-TARGET_HAS_WIDE_COLOR_DISPLAY := false
 TARGET_USES_DISPLAY_RENDER_INTENTS := true
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DRM_PP := true
@@ -204,12 +200,6 @@ TARGET_USES_DRM_PP := true
 DEVICE_MANIFEST_FILE := device/google/bonito/manifest.xml
 DEVICE_MATRIX_FILE := device/google/bonito/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/bonito/device_framework_matrix.xml
-
-# Userdebug only Vendor Interface Manifest
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-DEVICE_FRAMEWORK_MANIFEST_FILE += device/google/bonito/framework_manifest_userdebug.xml
-DEVICE_MATRIX_FILE += device/google/bonito/compatibility_matrix_userdebug.xml
-endif
 
 ODM_MANIFEST_SKUS := \
     G020A \
