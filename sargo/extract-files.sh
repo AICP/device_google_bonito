@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017-2020 The LineageOS Project
+# Copyright (C) 2017-2023 The LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -59,14 +59,16 @@ function blob_fixup() {
         product/etc/sysconfig/nexus.xml)
             sed -i 's/qulacomm/qualcomm/' "${2}"
             ;;
-        product/lib/libsecureuisvc_jni.so)
-            ;&
-        product/lib64/libsecureuisvc_jni.so)
-            for LIBGUI_SHIM in $(grep -L "libgui_shim.so" "${2}"); do
-                "${PATCHELF}" --add-needed "libgui_shim.so" "${LIBGUI_SHIM}"
-            done
+        vendor/bin/hw/android.hardware.rebootescrow-service.citadel)
+            "${PATCHELF}" --replace-needed "libcrypto.so" "libcrypto-v33.so" "${2}"
             ;;
     esac
+}
+
+function prepare_firmware() {
+    if [ "${SRC}" != "adb" ]; then
+        bash "${ANDROID_ROOT}"/lineage/scripts/pixel/prepare-firmware.sh "${DEVICE}" "${SRC}"
+    fi
 }
 
 # Initialize the helper
@@ -74,6 +76,11 @@ setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 extract "${MY_DIR}/proprietary-files-carriersettings.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+extract "${MY_DIR}/proprietary-files-radio.txt" "${SRC}" "${KANG}" --section "${SECTION}"
 extract "${MY_DIR}/proprietary-files-vendor.txt" "${SRC}" "${KANG}" --section "${SECTION}"
+
+if [ -z "${SECTION}" ]; then
+    extract_firmware "${MY_DIR}/proprietary-firmware.txt" "${SRC}"
+fi
 
 "${MY_DIR}/setup-makefiles.sh"

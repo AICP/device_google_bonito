@@ -21,9 +21,6 @@ LOCAL_PATH := device/google/bonito
 # define hardware platform
 PRODUCT_PLATFORM := sdm670
 
-# Enable updating of APEXes
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-
 include device/google/bonito/device-audio-mfg.mk
 include device/google/bonito/device.mk
 
@@ -96,16 +93,11 @@ persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 PRODUCT_COPY_FILES += \
     device/google/bonito/init.logging.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).logging.rc
 
-# Dumpstate HAL
-PRODUCT_PACKAGES += \
-    android.hardware.dumpstate@1.0-service.bonito
-
 # Enable retrofit dynamic partitions for all bonito
 # and sargo targets
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.0-impl.recovery \
     bootctrl.sdm710 \
     bootctrl.sdm710.recovery \
     check_dynamic_partitions \
@@ -116,8 +108,11 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_product=ext4 \
     POSTINSTALL_OPTIONAL_product=false \
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.use_color_management=true
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.surface_flinger.protected_contents=true
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.surface_flinger.protected_contents=true \
+    ro.surface_flinger.use_color_management=true \
+    ro.surface_flinger.vsync_event_phase_offset_ns=2000000 \
+    ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 
 # Set thermal warm reset
 PRODUCT_PRODUCT_PROPERTIES += \

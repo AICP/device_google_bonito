@@ -7,6 +7,9 @@
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
+# Add common definitions for Qualcomm
+$(call inherit-product, hardware/qcom-caf/common/common.mk)
+
 # AiAi Config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
@@ -15,10 +18,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.vendor.camera.extensions.package=com.google.android.apps.camera.services \
     ro.vendor.camera.extensions.service=com.google.android.apps.camera.services.extensions.service.PixelExtensions
-
-# Doze
-PRODUCT_PACKAGES += \
-    Doze
 
 # Elmyra
 PRODUCT_PACKAGES += \
@@ -29,7 +28,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
 
 # GMS
-WITH_GMS := true
+ifeq ($(WITH_GMS),true)
+GMS_MAKEFILE=gms_minimal.mk
+endif
 
 # Google Assistant
 PRODUCT_PRODUCT_PROPERTIES += ro.opa.eligible_device=true
@@ -70,9 +71,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.media.c2@1.0.vendor:32 \
     libavservices_minijail_vendor:32 \
+    libavservices_minijail.vendor:64 \
     libcodec2_hidl@1.0.vendor:32 \
     libcodec2_vndk.vendor \
     libstagefright_bufferpool@2.0.1.vendor
+
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
 
 # Confirmation UI
 PRODUCT_PACKAGES += \
@@ -96,35 +102,46 @@ PRODUCT_PACKAGES += \
     android.hardware.identity-support-lib.vendor:64 \
     android.hardware.identity_credential.xml
 
+# Nos
+PRODUCT_PACKAGES += \
+    libkeymaster4support.vendor:64 \
+    libkeymaster4_1support.vendor:64
+
 # Json
 PRODUCT_PACKAGES += \
     libjson
 
-# Nos
-PRODUCT_PACKAGES += \
-    libnos:64 \
-    libnosprotos:64 \
-    libnos_client_citadel:64 \
-    libnos_datagram:64 \
-    libnos_datagram_citadel:64 \
-    libnos_transport:64 \
-    nos_app_avb:64 \
-    nos_app_identity:64 \
-    nos_app_keymaster:64 \
-    nos_app_weaver:64
-
 # Protobuf
 PRODUCT_PACKAGES += \
-    libprotobuf-cpp-full-vendorcompat
+    libprotobuf-cpp-full-vendorcompat \
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat
+
+# Telephony
+PRODUCT_PACKAGES += \
+    qti-telephony-hidl-wrapper \
+    qti-telephony-hidl-wrapper-prd \
+    qti_telephony_hidl_wrapper.xml \
+    qti_telephony_hidl_wrapper_prd.xml \
+    qti-telephony-utils \
+    qti_telephony_utils.xml
+
+# VNDK FWK detect
+PRODUCT_PACKAGES += \
+    libqti_vndfwk_detect.vendor \
+    libvndfwk_detect_jni.qti.vendor
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi-V2-ndk.vendor:64 \
+    android.hardware.wifi@1.0.vendor:64 \
     libwifi-hal:64 \
-    libwifi-hal-qcom
+    libwifi-hal-qcom \
+    libwifi-system-iface.vendor:64
 
 # Misc interfaces
 PRODUCT_PACKAGES += \
-    android.frameworks.sensorservice@1.0.vendor:32 \
+    android.frameworks.sensorservice@1.0.vendor \
     android.frameworks.stats@1.0.vendor:64 \
     android.hardware.authsecret@1.0.vendor:64 \
     android.hardware.biometrics.fingerprint@2.1.vendor:64 \
@@ -132,6 +149,7 @@ PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0.vendor \
     android.hardware.keymaster@3.0.vendor:32 \
     android.hardware.keymaster@4.0.vendor:32 \
+    android.hardware.keymaster@4.1.vendor:64 \
     android.hardware.neuralnetworks@1.0.vendor:64 \
     android.hardware.neuralnetworks@1.1.vendor:64 \
     android.hardware.neuralnetworks@1.2.vendor:64 \
@@ -139,18 +157,26 @@ PRODUCT_PACKAGES += \
     android.hardware.oemlock@1.0.vendor:64 \
     android.hardware.radio.config@1.0.vendor:64 \
     android.hardware.radio.config@1.1.vendor:64 \
+    android.hardware.radio.config@1.2.vendor:64 \
     android.hardware.radio.deprecated@1.0.vendor:64 \
     android.hardware.radio@1.2.vendor:64 \
     android.hardware.radio@1.3.vendor:64 \
+    android.hardware.radio@1.4.vendor:64 \
+    android.hardware.radio@1.5.vendor:64 \
+    android.hardware.secure_element@1.1.vendor:64 \
+    android.hardware.secure_element@1.2.vendor:64 \
     android.hardware.sensors@1.0.vendor:32 \
     android.hardware.sensors@2.0.vendor \
+    android.hardware.thermal@1.0.vendor:64 \
     android.hardware.weaver@1.0.vendor:64 \
-    android.hardware.wifi@1.1.vendor:64 \
-    android.hardware.wifi@1.2.vendor:64 \
-    android.hardware.wifi@1.3.vendor:64 \
-    android.hardware.wifi@1.4.vendor:64 \
-    android.hardware.wifi@1.5.vendor:64 \
     android.system.net.netd@1.1.vendor:64
+
+# Misc
+PRODUCT_PACKAGES += \
+    libcrypto_utils.vendor:64 \
+    libpng.vendor \
+    libsqlite.vendor \
+    libssl.vendor:32
 
 # Properties
 TARGET_VENDOR_PROP := $(LOCAL_PATH)/vendor.prop
@@ -162,7 +188,8 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster-V3-ndk_platform.vendor:64 \
     android.hardware.power-V1-ndk_platform.vendor:64 \
     android.hardware.power.stats-V1-ndk_platform:64 \
-    android.hardware.rebootescrow-V1-ndk_platform.vendor:64 \
-    libgui_shim
+    android.hardware.rebootescrow-V1-ndk_platform.vendor:64
 
-include vendor/gapps/arm64/arm64-vendor.mk
+# VNDK
+PRODUCT_PACKAGES += \
+    libcrypto-v33
