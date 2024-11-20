@@ -10,6 +10,8 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
+$(call inherit-product-if-exists, vendor/certification/config.mk)
+
 # AiAi Config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/allowlist_com.google.android.as.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/allowlist_com.google.android.as.xml
