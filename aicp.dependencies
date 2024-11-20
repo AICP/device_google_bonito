@@ -22,5 +22,11 @@
     "repository":  "MindTheGapps/vendor_gapps",
     "target_path": "vendor/gapps",
     "branch":      "upsilon"
+  },
+  {
+    "remote":      "aicp",
+    "repository":  "Evolution-X/vendor_certification",
+    "target_path": "vendor/certification",
+    "branch":      "udc"
   }
 ]
