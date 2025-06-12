@@ -30,10 +30,6 @@ PRODUCT_PROPERTY_OVERRIDES += vendor.audio.adm.buffering.ms=3
 PRODUCT_PROPERTY_OVERRIDES += audio_hal.period_multiplier=2
 PRODUCT_PROPERTY_OVERRIDES += af.fast_track_multiplier=1
 
-# Set c2 codec in default
-PRODUCT_PROPERTY_OVERRIDES += debug.stagefright.ccodec=4
-PRODUCT_PROPERTY_OVERRIDES += debug.stagefright.omx_default_rank=512
-
 # Setting vendor SPL
 VENDOR_SECURITY_PATCH = 2022-05-05
 
@@ -98,8 +94,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
 PRODUCT_PACKAGES += \
-    bootctrl.sdm710 \
-    bootctrl.sdm710.recovery \
     check_dynamic_partitions \
 
 AB_OTA_POSTINSTALL_CONFIG += \

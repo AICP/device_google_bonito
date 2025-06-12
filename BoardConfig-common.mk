@@ -37,8 +37,6 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 
 TARGET_BOARD_COMMON_PATH := device/google/bonito/sdm710
 
-BUILD_BROKEN_DUP_RULES := true
-
 BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 printk.devkmsg=on
 BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3
@@ -91,7 +89,7 @@ TARGET_RECOVERY_WIPE := device/google/bonito/recovery.wipe
 TARGET_RECOVERY_FSTAB := device/google/bonito/fstab.hardware
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_UI_LIB := \
-    librecovery_ui_pixel \
+    //hardware/google/pixel/recovery:librecovery_ui_pixel \
     libfstab
 
 # system.img
@@ -146,11 +144,7 @@ TARGET_NO_RPC := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 
-# RenderScript
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-
 # Sensors
-USE_SENSOR_MULTI_HAL := true
 TARGET_SUPPORT_DIRECT_REPORT := true
 # Enable sensor Version V_2
 USE_SENSOR_HAL_VER := 2.0
