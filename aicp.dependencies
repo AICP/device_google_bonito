@@ -3,30 +3,18 @@
     "remote":      "aicp",
     "repository":  "AICP/kernel_google_msm-4.9",
     "target_path": "kernel/google/msm-4.9",
-    "branch":      "u14.0"
+    "branch":      "v15.0"
   },
   {
     "remote":      "aicp",
     "repository":  "LineageOS/android_packages_apps_ElmyraService",
     "target_path": "packages/apps/ElmyraService",
-    "branch":      "lineage-21.0"
+    "branch":      "lineage-22.2"
   },
   {
     "remote":      "aicp",
     "repository":  "LineageOS/android_device_google_gs-common",
     "target_path": "device/google/gs-common",
-    "branch":      "lineage-21"
-  },
-  {
-    "remote":      "gitlab",
-    "repository":  "MindTheGapps/vendor_gapps",
-    "target_path": "vendor/gapps",
-    "branch":      "upsilon"
-  },
-  {
-    "remote":      "aicp",
-    "repository":  "Evolution-X/vendor_certification",
-    "target_path": "vendor/certification",
-    "branch":      "udc"
+    "branch":      "lineage-22.2"
   }
 ]

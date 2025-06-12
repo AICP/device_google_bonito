@@ -24,12 +24,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/qcom/sdm845 \
     hardware/qcom/wlan/legacy \
-    vendor/google/camera \
-    vendor/qcom/sdm845 \
-    vendor/google/interfaces \
-    vendor/google_devices/common/proprietary/confirmatioui_hal \
-    vendor/google_nos/host/android \
-    vendor/google_nos/test/system-test-harness
+    hardware/qcom-caf/bootctrl \
+    vendor/qcom/opensource/data-ipa-cfg-mgr-legacy-um
 
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true
@@ -136,10 +132,6 @@ PRODUCT_PACKAGES += \
 # Use Sdcardfs
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sys.sdcardfs=1
-
-PRODUCT_PACKAGES += \
-    bootctrl.sdm710 \
-    bootctrl.sdm710.recovery
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cp_system_other_odex=1
@@ -350,10 +342,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@2.0-impl-qti-display \
     vendor.qti.hardware.display.allocator@1.0-service
 
-# RenderScript HAL
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0-impl
-
 # Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1-impl-bonito \
@@ -372,9 +360,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Memtrack HAL
 PRODUCT_PACKAGES += \
-    memtrack.$(TARGET_CHIPSET) \
-    android.hardware.memtrack@1.0-impl \
-    android.hardware.memtrack@1.0-service
+    vendor.qti.hardware.memtrack-service
 
 # Bluetooth SoC
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -426,22 +412,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.usb.gadget-service.bonito
 
-PRODUCT_PACKAGES += \
-    libmm-omxcore \
-    libOmxCore \
-    libstagefrighthw \
-    libOmxVdec \
-    libOmxVenc \
-    libc2dcolorconvert
-
-# Enable Codec 2.0
-PRODUCT_PROPERTY_OVERRIDES += \
-    debug.media.codec2=2 \
-
-# Disable OMX
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.media.omx=0 \
-
 # Create input surface on the framework side
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.stagefright.c2inputsurface=-1 \
@@ -488,9 +458,10 @@ endif
 
 # Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-impl-pixel-legacy \
-    android.hardware.boot@1.2-impl-pixel-legacy.recovery \
-    android.hardware.boot@1.2-service \
+    android.hardware.boot-service.qti \
+    android.hardware.boot-service.qti.recovery
+
+$(call soong_config_set,QTI_GPT_UTILS,USE_BSG_FRAMEWORK,false)
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/thermal_info_config_$(PRODUCT_HARDWARE).json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
@@ -527,8 +498,8 @@ endif
 
 # Wifi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi-service \
     wificond \
-    libwpa_client \
     WifiOverlay
 
 # Connectivity
@@ -600,10 +571,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
     $(LOCAL_PATH)/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
-    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
-    $(LOCAL_PATH)/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml \
-    $(LOCAL_PATH)/media_codecs_omx.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_omx.xml
+    $(LOCAL_PATH)/media_profiles_V1_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_profiles_V1_0.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.snd_card.open.retries=50
@@ -618,10 +586,6 @@ PRODUCT_PACKAGES += \
 # GPS configuration file
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps.conf:$(TARGET_COPY_OUT_VENDOR)/etc/gps.conf
-
-# Vendor seccomp policy files for media components:
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/seccomp_policy/mediacodec.policy:$(TARGET_COPY_OUT_VENDOR)/etc/seccomp_policy/mediacodec.policy
 
 ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 # Subsystem ramdump
