@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc7d4562_7a26d559",
+        "filename": "BoardConfigLineage.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1416
+      },
+      "writtenOn": "2025-06-21T14:30:05Z",
+      "side": 1,
+      "message": "Oops",
+      "range": {
+        "startLine": 30,
+        "startChar": 16,
+        "endLine": 30,
+        "endChar": 23
+      },
+      "revId": "7d8829f2884baea35a10bc1cce87d701a5687466",
+      "serverId": "9f904cbb-a964-4fab-a7dc-5cfc4d5c238b"
+    }
+  ]
+}
